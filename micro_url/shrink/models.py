@@ -13,7 +13,7 @@ import micro_url.settings as settings
 
 
 alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$',
-                    'Only alphanumeric characters are allowed.')
+                              'Only alphanumeric characters are allowed.')
 
 
 class MicroUrlQuerySet(models.query.QuerySet):
@@ -37,14 +37,15 @@ class MicroUrlQuerySet(models.query.QuerySet):
             qs = self.filter(alias=alias)
         else:
             # empty queryset
-            qs = self.get_empty_query_set()        
+            qs = self.get_empty_query_set()
 
         return qs[0] if qs.count() > 0 else None
-        
+
     def get_original_url(self, micro_url=None, alias=None):
         """ Original link of the micro url """
 
-        micro_url_object = self.get_micro_url_object(micro_url=micro_url, alias=alias)
+        micro_url_object = self.get_micro_url_object(
+            micro_url=micro_url, alias=alias)
         return micro_url_object.link if micro_url_object else None
 
 
@@ -58,18 +59,18 @@ class MicroUrl(models.Model):
     """ Model for MicroUrl """
 
     link = models.URLField(unique=True, db_index=True,
-        help_text='A long url', verbose_name="URL*")
+                           help_text='A long url', verbose_name="URL*")
     alias = models.CharField(max_length=settings.SHORT_URL_MAX_LEN,
-        unique=True, db_index=True, blank=True, null=True,
-        help_text='A short code (Alphanumeric)',
-        verbose_name="Alias", validators=[alphanumeric])
+                             unique=True, db_index=True, blank=True, null=True,
+                             help_text='A short code (Alphanumeric)',
+                             verbose_name="Alias", validators=[alphanumeric])
     registered_at = models.DateTimeField(auto_now_add=True,
-        help_text='Time at which the url is registered')
+                                         help_text='Time at which the url is registered')
     submitter = models.ForeignKey(User,
-        help_text='User who registerd the url')
+                                  help_text='User who registerd the url')
     micro_url = models.URLField(max_length=settings.MICRO_URL_MAX_LEN,
-        unique=True, db_index=True, blank=True, null=True,
-        help_text='Shortened Url')
+                                unique=True, db_index=True, blank=True, null=True,
+                                help_text='Shortened Url')
     objects = MicroUrlManager.from_queryset(MicroUrlQuerySet)()
 
     class Meta:
@@ -84,7 +85,7 @@ class MicroUrl(models.Model):
         """
 
         users = User.objects.all()
-        x = randint(0, users.count()-1)
+        x = randint(0, users.count() - 1)
         return users[x]
 
     def __set_submitter(self):
@@ -131,7 +132,7 @@ class MicroUrl(models.Model):
         base_url = self.__get_base_micro_url()  # get base url
         self.micro_url = base_url + short_code  # develop micro url
         return
-        
+
     def save(self, *args, **kwargs):
         """ Save the object after computing the micro url
         and associating it to a random submitter """
@@ -140,4 +141,3 @@ class MicroUrl(models.Model):
         self.__set_submitter()
         super(MicroUrl, self).save(*args, **kwargs)
         return
-

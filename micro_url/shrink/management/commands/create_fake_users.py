@@ -29,10 +29,10 @@ class Command(RandomUserMixin, BaseCommand):
         # Named (optional) arguments
         # Display Existing User
         parser.add_argument('--display',
-            action='store_true',
-            dest='display',
-            default=False,
-            help='Display existing users registered in the system')
+                            action='store_true',
+                            dest='display',
+                            default=False,
+                            help='Display existing users registered in the system')
 
     def handle(self, *args, **options):
         """ Handler creates random users with the given count.
@@ -42,7 +42,7 @@ class Command(RandomUserMixin, BaseCommand):
 
         # Process Command Options
         # --------------------------------------------------------------
- 
+
         # extract user count from the command options
         user_count = options.get('count', [])
         if not user_count:
@@ -52,8 +52,8 @@ class Command(RandomUserMixin, BaseCommand):
         except Exception:
             raise CommandError('User count should be an integer.')
         if user_count == 0:
-            raise CommandError('User count should be greater than zero.')            
- 
+            raise CommandError('User count should be greater than zero.')
+
         # extract display option from the command
         display = options.get('display')
 
@@ -71,12 +71,7 @@ class Command(RandomUserMixin, BaseCommand):
                 if display:
                     self.stdout.write(str(user))
             # Successful registration of users
-            self.stdout.write('\nSuccessfully created %d random user(s)' \
-                 % (user_count))
+            self.stdout.write('\nSuccessfully created %d random user(s)'
+                              % (user_count))
         except Exception:
             self.stdout.write('\nFailed to register random user(s)')
-
-
-
-
-         

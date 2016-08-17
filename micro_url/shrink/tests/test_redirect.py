@@ -68,5 +68,3 @@ class MicroUrlTestRedirect(unittest.TestCase):
             response = redirect(request)
         except Exception, exp:
             self.assertEqual(type(exp), Http404)
-
-

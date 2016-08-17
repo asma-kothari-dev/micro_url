@@ -33,15 +33,15 @@ class MicroUrlForm(forms.ModelForm):
         if link:
             micro_url = MicroUrl.objects.filter(link=link)
             if micro_url.exists():
-                self.add_error('link', 'Micro URL %s is already ' \
-                    'generated for this url.' % micro_url[0].micro_url)
+                self.add_error('link', 'Micro URL %s is already '
+                               'generated for this url.' % micro_url[0].micro_url)
 
         if alias:
             if MicroUrl.objects.filter(alias=alias).exists():
-                self.add_error('alias', '"%s" is already taken' %  alias)
+                self.add_error('alias', '"%s" is already taken' % alias)
 
             if len(alias) < settings.SHORT_URL_MAX_LEN:
-                self.add_error('alias', 'Please provide a custom alias ' \
-                    'of  atleast %d characters' % settings.SHORT_URL_MAX_LEN)
+                self.add_error('alias', 'Please provide a custom alias '
+                               'of  atleast %d characters' % settings.SHORT_URL_MAX_LEN)
 
         return cleaned_data

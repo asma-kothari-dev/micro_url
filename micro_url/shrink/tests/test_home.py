@@ -20,4 +20,3 @@ class MicroUrlTestHome(unittest.TestCase):
 
         response = self.client.get('/', follow=True)
         self.assertEqual(response.status_code, 200)
-

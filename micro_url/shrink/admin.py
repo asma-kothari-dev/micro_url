@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # app imports
-from models import  MicroUrl
+from models import MicroUrl
 
 
 class MicroUrlAdmin(admin.ModelAdmin):

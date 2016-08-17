@@ -29,13 +29,14 @@ class MicroUrlTestPreview(unittest.TestCase):
     def __context(self, response):
         """ Extract context from response
         :return: <class 'django.template.context.RequestContext'>"""
-        
+
         return response.context[0]
 
     def test_preview_micro_url(self):
         """ Preview Micro URL """
 
-        endpoint = reverse('preview_micro_url', args=(self.micro_url_object.id,))
+        endpoint = reverse('preview_micro_url',
+                           args=(self.micro_url_object.id,))
         response = self.client.get(endpoint)  # perform GET request
 
         # response status code 200
@@ -62,5 +63,3 @@ class MicroUrlTestPreview(unittest.TestCase):
         # response status code 404
         self.assertEqual(response.status_code, 404)
         self.assertIn('Page Not Found', response.content)
-
-

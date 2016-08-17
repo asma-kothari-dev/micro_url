@@ -41,9 +41,10 @@ class MicroUrlTestCreate(unittest.TestCase):
         self.assertEqual(response.status_code, 302)
 
         # micro url object created
-        micro_url_object = MicroUrl.objects.get_micro_url_object(alias=data['alias'])
+        micro_url_object = MicroUrl.objects.get_micro_url_object(alias=data[
+                                                                 'alias'])
         self.assertNotEqual(micro_url_object, None)
- 
+
     def test_submit_link_without_alias(self):
         """ Enter valid link and no alias """
 
@@ -56,13 +57,13 @@ class MicroUrlTestCreate(unittest.TestCase):
         # micro url object created
         micro_url_object = MicroUrl.objects.get(link=data['link'])
         self.assertNotEqual(micro_url_object, None)
- 
+
     def test_submit_empty_form(self):
         """ Validation Error results in landing back to original page with errors """
 
         data = {}
         response = self.client.post('/', data)  # Post empty form
- 
+
         # 200 response contains the form error
         error = 'This field is required'
         self.__validate(response, error)
@@ -84,7 +85,8 @@ class MicroUrlTestCreate(unittest.TestCase):
         data = {'link': 'https://wwww.google.com/', 'alias': 'abcde'}
         response = self.client.post('/', data)  # post link and alias
         data = {'link': 'https://wwww.google.com?search=asma', 'alias': 'abcde'}
-        response = self.client.post('/', data)  # post new link with duplicate alias
+        # post new link with duplicate alias
+        response = self.client.post('/', data)
 
         # 200 response contains the form error
         error = 'is already taken'
@@ -94,7 +96,8 @@ class MicroUrlTestCreate(unittest.TestCase):
         """ Validation Error results in landing back to original page with errors """
 
         data = {'link': 'https://wwww.google.com/', 'alias': 'a@b!5'}
-        response = self.client.post('/', data)  # post alias with special characters
+        # post alias with special characters
+        response = self.client.post('/', data)
 
         # 200 response contains the form error
         error = 'Only alphanumeric characters are allowed'
@@ -129,4 +132,3 @@ class MicroUrlTestCreate(unittest.TestCase):
         # 200 response contains the form error
         error = 'Ensure this value has at most 5 characters'
         self.__validate(response, error)
-

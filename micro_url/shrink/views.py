@@ -50,7 +50,7 @@ def display_micro_url(request, pk):
     micro_url_object = get_object_or_404(MicroUrl, pk=pk)
 
     # Send preview of the micro url
-    preview =  '!' + micro_url_object.alias
+    preview = '!' + micro_url_object.alias
 
     # prepare data
     data = {'micro_url': micro_url_object.micro_url,
@@ -68,7 +68,7 @@ def preview_micro_url(request, pk):
     micro_url_object = get_object_or_404(MicroUrl, pk=pk)
 
     # Send preview of the micro url
-    preview =  '!' + micro_url_object.alias
+    preview = '!' + micro_url_object.alias
 
     # prepare data
     data = {'original_url': micro_url_object.link,
@@ -91,7 +91,8 @@ def redirect(request):
         alias = path_info.split("/")[-1]
 
     if '!' in alias:
-        micro_url_object = MicroUrl.objects.get_micro_url_object(alias=alias[1:])
+        micro_url_object = MicroUrl.objects.get_micro_url_object(alias=alias[
+                                                                 1:])
         return HttpResponseRedirect(reverse('preview_micro_url',
                                             args=(micro_url_object.id,)))
 
@@ -103,5 +104,3 @@ def redirect(request):
         return HttpResponseRedirect(original_url)
     else:
         raise Http404('No url found for %s' % alias)
-
-    

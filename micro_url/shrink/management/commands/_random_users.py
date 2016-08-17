@@ -11,7 +11,6 @@ class RandomUserMixin(object):
         return datetime.datetime.utcfromtimestamp(timestamp)
     #_______________________________End of __get_datetime_from_timestamp
 
-
     # @caller: <_get_random_users>
     def __fetch_random_users(self, count):
         """ Fetches random user using API of randomuser.me.
@@ -46,7 +45,7 @@ class RandomUserMixin(object):
         """ Extracts necessary fields from the response """
 
         results = response.get('results', [])
- 
+
         if not results:
             exception_message = 'No users found in the response from ' \
                 'randomusers.me'
@@ -86,7 +85,7 @@ class RandomUserMixin(object):
             password = login.get('md5', None)
             last_name = name.get('last', None)
             first_name = name.get('first', None)
-            username =  login.get('username', None)
+            username = login.get('username', None)
             date_joined = self.__get_datetime_from_timestamp(registered)
 
             user = {'email': email,
@@ -115,4 +114,3 @@ class RandomUserMixin(object):
         except Exception, exception_message:
             raise Exception(exception_message)
     #___________________________________________End of _get_random_users
-
