@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    <div class="container" align="center">
+        <h2> Welcome to Micro URL Service!</h2>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <p>&nbsp;</p>
+    <div class="row-fluid">
+    <div class="span3"></div>
+    <div class="span6">
+        <form class="form-{{ layout }}" action="" method="post" >
+            <div align="center"><legend>MICRO URL GENERATOR</legend></div>
+            {% csrf_token %}
+            {{ form|as_bootstrap:layout }}
+            {% if layout == "horizontal" %}
+                <p class="form-actions">
+                    <input type="submit" value="Create" class="btn btn-success">
+                    <button type="reset" class="btn">Cancel</button>
+                </p>
+            {% else %}
+                <input type="submit" value="Create" class="btn btn-success">
+                <button type="reset" class="btn">Cancel</button>
+            {% endif %}
+        </form>
+    </div>
+    <div class="span3"></div>
+    </div>
+{% endblock %}

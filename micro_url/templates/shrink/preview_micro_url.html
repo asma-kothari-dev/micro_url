@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+        <div align="center"><h2>Preview Micro URL</h2></div>
+        </br>
+        <div class ="row-fluid">
+            <div class="span2">YOUR URL</div>
+            <div class="span10">
+                <a href={{ original_url }} class="btn btn-link btn-info disabled">{{ original_url }}</a>
+            </div>
+        </div>
+        </br>
+        <div class ="row-fluid">
+            <div class="span2">MICRO URL</div>
+            <div class="span10">
+                <a href={{ micro_url }} class="btn btn-link btn-danger disabled">{{ micro_url }}</a>
+            </div>
+        </div>
+        </br>
+        <div class ="row-fluid">
+            <div class="span2">SUBMITTER</div>
+            <div class="span5">
+                <a href="" class="btn btn-inverse disabled"><i class="icon-user icon-white"></i>&nbsp;{{ submitter.first_name|safe|escape }} {{ submitter.last_name|safe|escape }}</a>
+            </div>            
+            <div class="span5">
+                <a href="" class="btn btn-inverse disabled"><i class="icon-envelope icon-white"></i>&nbsp;{{ submitter.email|safe|escape }}</a>
+            </div>
+        </div>
+{% endblock %}
+

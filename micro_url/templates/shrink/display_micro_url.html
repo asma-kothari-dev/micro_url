@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+        <div align="center"><h2>Micro URL is generated!</h2></div>
+        </br>
+        <div class ="row-fluid">
+            <div class="span2">MICRO URL</div>
+            <div class="span10">
+                <a href={{ micro_url }} class="btn btn-link btn-primary disabled">{{ micro_url }}</a>
+            </div>
+        </div>
+        </br>
+        <div class ="row-fluid">
+            <div class="span2">PREVIEW MICRO URL</div>
+            <div class="span10">
+                <a href={{ preview }} class="btn btn-link btn-warning disabled">{{ preview }}</a>
+            </div>
+        </div>
+{% endblock %}
+

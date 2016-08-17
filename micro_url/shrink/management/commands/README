@@ -1,0 +1,91 @@
+***COMMON ERRORS WHILE USING COMMAND : create_fake_users***
+
+-------------------------------------------------------------------------
+Too few arguments
+-------------------------------------------------------------------------
+
+(venv)root@asma:~/projects/micro_url# python manage.py create_fake_users
+usage: manage.py create_fake_users [-h] [--version] [-v {0,1,2,3}]
+                                   [--settings SETTINGS]
+                                   [--pythonpath PYTHONPATH] [--traceback]
+                                   [--no-color] [--display]
+                                   count [count ...]
+manage.py create_fake_users: error: too few arguments
+
+
+-------------------------------------------------------------------------
+Invalid int Value
+-------------------------------------------------------------------------
+
+(venv)root@asma:~/projects/micro_url# python manage.py create_fake_users abc
+usage: manage.py create_fake_users [-h] [--version] [-v {0,1,2,3}]
+                                   [--settings SETTINGS]
+                                   [--pythonpath PYTHONPATH] [--traceback]
+                                   [--no-color] [--display]
+                                   count [count ...]
+manage.py create_fake_users: error: argument count: invalid int value: 'abc'
+
+
+-------------------------------------------------------------------------
+User count should be greater than zero
+-------------------------------------------------------------------------
+
+(venv)root@asma:~/projects/micro_url# python manage.py create_fake_users 0
+CommandError: User count should be greater than zero.
+
+
+***CORRECT USAGE***
+
+-------------------------------------------------------------------------
+Command Help
+-------------------------------------------------------------------------
+(venv)root@asma:~/projects/micro_url# python manage.py create_fake_users --help
+usage: manage.py create_fake_users [-h] [--version] [-v {0,1,2,3}]
+                                   [--settings SETTINGS]
+                                   [--pythonpath PYTHONPATH] [--traceback]
+                                   [--no-color] [--display]
+                                   count [count ...]
+
+Creates random users
+
+positional arguments:
+  count
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output,
+                        2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g.
+                        "myproject.settings.main". If this isn't provided, the
+                        DJANGO_SETTINGS_MODULE environment variable will be
+                        used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g.
+                        "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions
+  --no-color            Don't colorize the command output.
+  --display             Display existing users registered in the system
+
+
+-------------------------------------------------------------------------
+Create Users
+-------------------------------------------------------------------------
+
+(venv)root@asma:~/projects/micro_url# python manage.py create_fake_users 1
+
+Successfully created 1 random user(s)
+
+
+-------------------------------------------------------------------------
+Create and Display Users
+-------------------------------------------------------------------------
+
+(venv)root@asma:~/projects/micro_url# python manage.py create_fake_users 2 --display
+
+{'username': u'organicelephant358', 'first_name': u'marilda', 'last_name': u'peixoto', 'password': u'9aedda89f60e333188ce78a08ae808c0', 'email': u'marilda.peixoto@example.com', 'date_joined': datetime.datetime(2005, 9, 19, 9, 3, 53)}
+
+{'username': u'blackostrich152', 'first_name': u'georgino', 'last_name': u'talhaoui', 'password': u'e3a3b9715b0d1978037fa154207e122d', 'email': u'georgino.talhaoui@example.com', 'date_joined': datetime.datetime(2000, 11, 21, 6, 31, 21)}
+
+Successfully created 2 random user(s)
