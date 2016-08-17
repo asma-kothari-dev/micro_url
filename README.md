@@ -68,7 +68,7 @@ Micro URLs are readable and beautiful.
 
 ### - Display Micro URL
 
-![display-micro-url](https://cloud.githubusercontent.com/assets/6028395/17714533/146f6f84-63b5-11e6-86bb-cf6625cd0d60.png)
+![display_micro_url](https://cloud.githubusercontent.com/assets/6028395/17715328/6e83af1e-63b8-11e6-9569-cb819bb406fb.png)
 
 ### - Preview Micro URL
 
